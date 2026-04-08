@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EL:IN – Varberg Energi</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',sans-serif;color:#150102;background:#fff;line-height:1.6}
+  a{text-decoration:none;color:inherit}
+
+  /* HERO */
+  .hero{background:#150102;color:#fff;min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:0;position:relative;overflow:hidden}
+  .hero::before{content:'';position:absolute;top:-120px;right:-80px;width:500px;height:500px;border-radius:50%;background:#DF0A11;opacity:0.07}
+  .hero-text{padding:80px 64px 80px 72px;position:relative;z-index:2}
+  .hero-eyebrow{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#EC6C70;font-weight:500;margin-bottom:24px}
+  .hero-h1{font-size:clamp(36px,5vw,64px);font-weight:700;line-height:1.05;margin-bottom:28px}
+  .hero-h1 span{color:#DF0A11}
+  .hero-sub{font-size:18px;color:#aaa;max-width:420px;margin-bottom:16px;line-height:1.7}
+  .hero-offer{background:#DF0A11;color:#fff;display:inline-block;padding:12px 24px;border-radius:8px;font-size:15px;font-weight:500;margin-bottom:40px}
+  .cta-btn{display:inline-block;background:#DF0A11;color:#fff;padding:18px 44px;border-radius:8px;font-size:18px;font-weight:600;letter-spacing:0.5px;cursor:pointer;transition:background 0.2s}
+  .cta-btn:hover{background:#C00C12}
+  .hero-image{background:#1e0203;display:flex;align-items:center;justify-content:center;min-height:100vh;position:relative;overflow:hidden}
+  .hero-image::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,#2a0304 0%,#150102 70%)}
+  .hero-image img{width:80%;max-width:400px;position:relative;z-index:2;filter:drop-shadow(0 20px 60px rgba(223,10,17,0.3))}
+  .hero-badge{position:absolute;bottom:40px;right:40px;background:#DF0A11;color:#fff;border-radius:50%;width:100px;height:100px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:11px;font-weight:600;text-align:center;z-index:3;line-height:1.3}
+  .hero-badge strong{font-size:16px;display:block}
+
+  /* PAIN SECTION */
+  .pain{background:#FFF7F7;padding:80px 72px;text-align:center}
+  .pain h2{font-size:clamp(28px,4vw,48px);font-weight:700;max-width:700px;margin:0 auto 24px;line-height:1.15}
+  .pain h2 em{color:#DF0A11;font-style:normal}
+  .pain p{font-size:18px;color:#555;max-width:560px;margin:0 auto 48px}
+  .stat-row{display:flex;justify-content:center;gap:48px;flex-wrap:wrap}
+  .stat{text-align:center}
+  .stat-num{font-size:48px;font-weight:700;color:#DF0A11;line-height:1}
+  .stat-label{font-size:14px;color:#777;margin-top:6px;max-width:160px}
+
+  /* PRODUCT */
+  .product{padding:80px 72px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+  .product-img{position:relative}
+  .product-img img{width:100%;max-width:460px;border-radius:16px}
+  .product-badge-pill{position:absolute;top:-16px;left:20px;background:#DF0A11;color:#fff;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:8px 20px;border-radius:100px}
+  .product-text .tag{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#DF0A11;font-weight:500;margin-bottom:20px}
+  .product-text h2{font-size:clamp(28px,3.5vw,44px);font-weight:700;line-height:1.1;margin-bottom:24px}
+  .product-text p{font-size:17px;color:#444;margin-bottom:16px;line-height:1.75}
+  .feature-list{list-style:none;margin:32px 0 40px}
+  .feature-list li{display:flex;align-items:flex-start;gap:12px;margin-bottom:16px;font-size:16px}
+  .check{width:22px;height:22px;background:#DF0A11;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+  .check svg{width:12px;height:12px}
+
+  /* HOW IT WORKS */
+  .how{background:#150102;color:#fff;padding:80px 72px}
+  .how-header{text-align:center;margin-bottom:64px}
+  .how-header .tag{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#EC6C70;font-weight:500;margin-bottom:16px}
+  .how-header h2{font-size:clamp(28px,4vw,48px);font-weight:700}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;position:relative}
+  .steps::before{content:'';position:absolute;top:36px;left:calc(16.67% + 20px);right:calc(16.67% + 20px);height:1px;background:#DF0A11;z-index:0}
+  .step{text-align:center;padding:0 32px;position:relative;z-index:1}
+  .step-num{width:72px;height:72px;border-radius:50%;background:#DF0A11;color:#fff;font-size:28px;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 28px;border:3px solid #150102}
+  .step h3{font-size:20px;font-weight:600;margin-bottom:12px}
+  .step p{font-size:15px;color:#999;line-height:1.7}
+  .step-sub{font-size:12px;color:#EC6C70;font-weight:500;margin-top:8px;letter-spacing:1px}
+
+  /* OFFER BANNER */
+  .offer{background:#DF0A11;padding:72px;text-align:center;color:#fff}
+  .offer h2{font-size:clamp(28px,4vw,52px);font-weight:700;margin-bottom:16px;line-height:1.1}
+  .offer p{font-size:18px;opacity:0.88;max-width:560px;margin:0 auto 40px}
+  .cta-btn-white{display:inline-block;background:#fff;color:#DF0A11;padding:18px 52px;border-radius:8px;font-size:18px;font-weight:700;cursor:pointer;transition:opacity 0.2s}
+  .cta-btn-white:hover{opacity:0.9}
+  .offer-small{font-size:14px;opacity:0.7;margin-top:20px}
+
+  /* FOOTER */
+  footer{background:#150102;color:#555;padding:40px 72px;display:flex;justify-content:space-between;align-items:center;font-size:14px}
+  footer strong{color:#EC6C70;font-size:16px;font-weight:700;letter-spacing:1px}
+
+  @media(max-width:900px){
+    .hero{grid-template-columns:1fr}
+    .hero-image{min-height:50vw;padding:40px}
+    .hero-text{padding:60px 32px 40px}
+    .product{grid-template-columns:1fr;padding:60px 32px}
+    .steps{grid-template-columns:1fr;gap:40px}
+    .steps::before{display:none}
+    .how{padding:60px 32px}
+    .pain{padding:60px 32px}
+    .offer{padding:60px 32px}
+    footer{flex-direction:column;gap:16px;text-align:center;padding:32px}
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-eyebrow">Alltid framåt. Aldrig stilla.</div>
+    <h1 class="hero-h1">Sluta betala<br>för el du<br><span>inte behöver.</span></h1>
+    <p class="hero-sub">Med EL:IN ser du exakt vad du förbrukar – i realtid. Spara pengar. Spara dem på något roligare.</p>
+    <div class="hero-offer">EL:IN ingår på köpet när du tecknar elavtal</div><br>
+    <a href="#" class="cta-btn">Se pris →</a>
+  </div>
+  <div class="hero-image">
+    <img src="https://i.ibb.co/DPSHNJWW/elin.jpg"
+      id="product-img"
+      onerror="this.style.display='none'; document.getElementById('img-fallback').style.display='flex'"
+      alt="EL:IN mätare från Varberg Energi"
+      style="display:block;width:90%;max-width:480px;position:relative;z-index:2">
+    <!-- Fallback: stylad placeholder med logotyp -->
+    <div id="img-fallback" style="width:280px;height:280px;border-radius:50%;background:#2a0304;border:2px solid #DF0A11;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px">
+      <div style="font-size:48px;font-weight:900;color:#DF0A11;letter-spacing:-2px">EL:IN</div>
+      <div style="font-size:12px;letter-spacing:3px;color:#EC6C70;text-transform:uppercase">Realtidsmätare</div>
+      <div style="width:60px;height:2px;background:#DF0A11;margin:4px 0"></div>
+      <div style="font-size:11px;color:#555;letter-spacing:2px;text-transform:uppercase">Varberg Energi</div>
+    </div>
+    <div class="hero-badge"><strong>GRATIS</strong>vid nytt<br>elavtal</div>
+  </div>
+</section>
+
+<!-- PAIN -->
+<section class="pain">
+  <h2>Vet du vad du <em>egentligen</em> betalar för?</h2>
+  <p>De flesta hushåll förbrukar el utan koll. Resultatet är en elräkning som aldrig riktigt stämmer med förväntningarna. Det fixar vi.</p>
+  <div class="stat-row">
+    <div class="stat">
+      <div class="stat-num">30%</div>
+      <div class="stat-label">av elförbrukningen kan sparas in med bättre koll</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">0 kr</div>
+      <div class="stat-label">kostar EL:IN när du tecknar avtal hos oss</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">Live</div>
+      <div class="stat-label">data direkt i appen – sekund för sekund</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT -->
+<section class="product">
+  <div class="product-img">
+    <div class="product-badge-pill">INGÅR PÅ KÖPET</div>
+    <div style="width:100%;aspect-ratio:1;background:#150102;border-radius:16px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px">
+      <div style="font-size:64px;font-weight:900;color:#DF0A11;letter-spacing:-3px">EL:IN</div>
+      <div style="display:flex;gap:20px;align-items:center">
+        <div style="width:70px;height:70px;border-radius:50%;background:#222;border:2px solid #333;display:flex;align-items:center;justify-content:center">
+          <div style="font-size:9px;color:#EC6C70;font-weight:700;letter-spacing:1px;text-align:center">VE</div>
+        </div>
+        <div style="width:90px;height:54px;background:#222;border-radius:6px;border:2px solid #333;display:flex;align-items:center;justify-content:center">
+          <div style="font-size:8px;color:#EC6C70;font-weight:700;letter-spacing:1px">VE VARBERG</div>
+        </div>
+      </div>
+      <div style="font-size:11px;color:#444;letter-spacing:2px;text-transform:uppercase">Varberg Energi</div>
+    </div>
+  </div>
+  <div class="product-text">
+    <div class="tag">Realtidsmätning</div>
+    <h2>Full koll.<br>Hela tiden.</h2>
+    <p>EL:IN pluggar du in och den börjar direkt mäta din förbrukning. Se vad som drar mest el. Optimera ditt batteri. Få ut mer av dina solceller.</p>
+    <p>Du behöver inte vara tekniker. Appen visar allt du behöver veta – enkelt och tydligt.</p>
+    <ul class="feature-list">
+      <li>
+        <div class="check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></div>
+        Realtidsdata på förbrukning och produktion
+      </li>
+      <li>
+        <div class="check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></div>
+        Perfekt för dig med solceller och batteri
+      </li>
+      <li>
+        <div class="check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></div>
+        Smart varning om förbrukningen ökar oväntat
+      </li>
+      <li>
+        <div class="check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></div>
+        Enkel installation – klart på fem minuter
+      </li>
+    </ul>
+    <a href="#" class="cta-btn">Se pris →</a>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="sa-funkar-det">
+  <div class="how-header">
+    <div class="tag">Så funkar det</div>
+    <h2>Tre steg. Sedan är du igång.</h2>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3>Teckna avtal</h3>
+      <p>Välj det elavtal som passar dig. EL:IN ingår automatiskt – utan extra kostnad.</p>
+      <div class="step-sub">Ta några minuter</div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3>Vi skickar EL:IN</h3>
+      <p>Din mätare skickas hem till dig med enkla instruktioner. Plug-and-play – inga verktyg behövs.</p>
+      <div class="step-sub">Leverans inom 3–5 dagar</div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h3>Håll koll i realtid</h3>
+      <p>Ladda ner appen EL:IN och se din förbrukning direkt. Spara pengar. Spara dem på något roligare.</p>
+      <div class="step-sub">Appen är gratis</div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="padding:80px 72px;background:#fff">
+  <div style="text-align:center;margin-bottom:56px">
+    <div style="font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#DF0A11;font-weight:500;margin-bottom:16px">Vanliga frågor</div>
+    <h2 style="font-size:clamp(28px,4vw,48px);font-weight:700;line-height:1.15">Har du frågor?<br>Vi har svaren.</h2>
+  </div>
+  <div style="max-width:720px;margin:0 auto" id="faq-list"></div>
+</section>
+
+<style>
+.faq-item{border-bottom:1px solid #f0e8e8;overflow:hidden}
+.faq-item:first-child{border-top:1px solid #f0e8e8}
+.faq-q{width:100%;background:none;border:none;text-align:left;padding:24px 0;font-size:17px;font-weight:600;color:#150102;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:inherit}
+.faq-q:hover{color:#DF0A11}
+.faq-icon{width:28px;height:28px;border-radius:50%;background:#FFF7F7;border:1px solid #FFD2D1;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background 0.2s,transform 0.3s}
+.faq-icon svg{width:12px;height:12px;transition:transform 0.3s}
+.faq-a{max-height:0;overflow:hidden;transition:max-height 0.35s ease,padding 0.2s}
+.faq-a p{font-size:16px;color:#555;line-height:1.75;padding-bottom:24px}
+.faq-item.open .faq-icon{background:#DF0A11;border-color:#DF0A11}
+.faq-item.open .faq-icon svg path{stroke:#fff}
+.faq-item.open .faq-a{max-height:300px}
+</style>
+
+<script>
+const faqs=[
+  {q:"Vad är EL:IN?",a:"EL:IN är Varberg Energis realtidsmätare för el. Den kopplas till din elmätare och skickar data direkt till appen – sekund för sekund. Du ser exakt vad du förbrukar, när du förbrukar och vad det kostar."},
+  {q:"Kostar EL:IN något?",a:"Nej. EL:IN ingår helt gratis när du tecknar eller byter elavtal till Varberg Energi. Inga dolda avgifter, inget abonnemang för mätaren."},
+  {q:"Passar EL:IN för mig med solceller och batteri?",a:"Absolut – EL:IN är perfekt om du har solceller, batteri eller laddbox. Du ser tydligt hur mycket du producerar, lagrar och förbrukar, och kan optimera din användning för att spara ännu mer."},
+  {q:"Hur svår är installationen?",a:"Enkel. EL:IN pluggar du in vid din elmätare. Inga verktyg, inga tekniker. Det tar ungefär fem minuter och i kartongen finns tydliga instruktioner steg för steg."},
+  {q:"Hur lång tid tar det innan jag får min EL:IN?",a:"När du tecknat ditt avtal skickar vi EL:IN hem till dig. Normalt tar leveransen 3–5 arbetsdagar."},
+  {q:"Var hittar jag appen?",a:"Appen heter EL:IN och finns gratis i App Store och Google Play. Du loggar in med samma uppgifter som du använder på Mina sidor hos Varberg Energi."},
+  {q:"Kan jag ha kvar EL:IN om jag byter elavtal?",a:"EL:IN fungerar ihop med ditt avtal hos Varberg Energi. Väljer du att byta leverantör kan vi inte garantera att mätarfunktionerna fortsätter fungera fullt ut."}
+];
+
+const list=document.getElementById('faq-list');
+faqs.forEach((f,i)=>{
+  const item=document.createElement('div');
+  item.className='faq-item';
+  item.innerHTML=`<button class="faq-q">${f.q}<span class="faq-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="#DF0A11" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button><div class="faq-a"><p>${f.a}</p></div>`;
+  item.querySelector('.faq-q').addEventListener('click',()=>{
+    const open=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(el=>el.classList.remove('open'));
+    if(!open)item.classList.add('open');
+  });
+  list.appendChild(item);
+});
+</script>
+
+<!-- OFFER -->
+<section class="offer">
+  <h2>Teckna nu.<br>EL:IN är din på köpet.</h2>
+  <p>Var inte en av dem som betalar för el i onödan. Håll koll med vår mätare och lägg pengarna på det som verkligen betyder något.</p>
+  <a href="#" class="cta-btn-white">Se pris →</a>
+  <div class="offer-small">Inget bindningstid. Enkel uppsägning.</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <strong>VE VARBERG ENERGI</strong>
+  <span>Alltid framåt. Aldrig stilla.</span>
+  <span>© 2025 Varberg Energi AB</span>
+</footer>
+
+<script>
+  const img = document.getElementById('product-img');
+  const fallback = document.getElementById('img-fallback');
+  img.onload = function(){
+    fallback.style.display='none';
+    img.style.display='block';
+  };
+  img.onerror = function(){
+    fallback.style.display='flex';
+    img.style.display='none';
+  };
+</script>
+
+</body>
+</html>
